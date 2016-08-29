@@ -101,6 +101,8 @@ function hackerdao_listProposals(startProposal, endProposal) {
 function hackerdao_status() {
   var totalSupply = hackerdao.totalSupply()/1e16;
   var bal = web3.fromWei(eth.getBalance(hackerdao_addr), "ether");
+  var cashOutDate = hackerdao.proposals(2)[3];
   console.log("Hacker DAO address : " + hackerdao_addr);
-  return "total Supply : " + totalSupply + ", Balance = " + bal + " " + _cur;
+  console.log("total Supply : " + totalSupply + ", Balance = " + bal + " " + _cur);
+  return "Cash-out @ " + new Date(cashOutDate * 1000) + " (" + cashOutDate + ")";
 }
