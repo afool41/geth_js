@@ -100,6 +100,7 @@ function mydao_status() {
   var creationEnds = mydao.closingTime();
 
   var timeNow = Date.now();
+  console.log("My DAO address :" + mydao_addr);
   console.log("Creation ends : " + new Date(creationEnds * 1000) );
 
   var totalSupply = mydao.totalSupply()/1e16;

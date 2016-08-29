@@ -29,6 +29,7 @@ thedao.splitDAO(73, "0xa003e4b91180d3e06a03f1916fe94eb4c350850e", {from:acct[2],
 thedao.splitDAO(73, "0xa003e4b91180d3e06a03f1916fe94eb4c350850e", {from:acct[1], gas:300000});
 thedao.splitDAO(73, "0xa003e4b91180d3e06a03f1916fe94eb4c350850e", {from:acct[0], gas:300000});
 
+// the following happens on Ethereum-Classic chain !!
 // wait 27 days, and then make a newCurator ( myself ) proposal asap
 // acct[6] is for ETClassic !
 // acct[5] propose acct[6] as the new curator
@@ -54,4 +55,14 @@ tempdao.splitDAO(1, acct[6], {from:acct[0], gas:300000});
 // wait 27-day-creation-period again
 mydao_status();
 
-// and then make a normal Proposal to send all eth to curator ( myself ), wait 14 days, and then send out the ether...
+// and then make a normal Proposal to send "all etc in Wei == eth.getBalance(mydao_addr)" to curator ( myself ). vote yes and then wait 14 days before sending out the ether...
+mydao.newProposal(acct[6], eth.getBalance(mydao_addr), "afool finally retrieving ALL etc", "", 1209600, false, {from:acct[6], gas:300000});
+
+// then vote yes on new proposal..
+mydao.vote(1, true, {from:acct[5]});
+mydao.vote(1, true, {from:acct[4]});
+mydao.vote(1, true, {from:acct[3]});
+mydao.vote(1, true, {from:acct[2]});
+mydao.vote(1, true, {from:acct[1]});
+mydao.vote(1, true, {from:acct[0]});
+
