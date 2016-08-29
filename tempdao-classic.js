@@ -100,6 +100,7 @@ function tempdao_status() {
   var creationEnds = tempdao.closingTime();
 
   var timeNow = Date.now();
+  console.log("temp dao address : " + tempdao_addr);
   console.log("Creation ends : " + new Date(creationEnds * 1000) );
 
   var totalSupply = tempdao.totalSupply()/1e16;

@@ -8,8 +8,10 @@ var _cur = "ETC";
 loadScript("wallet-classic.js");
 // loadScript("digix.js");
 loadScript("thedao-classic.js");
+loadScript("hackerdao-classic.js");
 loadScript("tempdao-classic.js");
 loadScript("mydao-classic.js");
+loadScript("whwithdraw-classic.js");
 // loadScript("makerdao.js");
 // loadScript("btcrelay.js");
 
@@ -18,8 +20,8 @@ function balByAccts() {
    // total etc, dgd token, dgd badge, mkr, tempdao  & thedao tokens
    // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_tp = 0, t_td = 0;
 
-   // total etc, mydao 
-   var t_e = 0, t_my = 0;
+   // total etc, mydao, whwd
+   var t_e = 0, t_my = 0, t_wh = 0;
 
    for (i = 0; i < eth.accounts.length; i++) {
        var s = "acct[" + i + "] ";
@@ -74,8 +76,15 @@ function balByAccts() {
           a = a + tmy + " myDAOs ; ";
        }
 
+       // Whitehat withdraw contract
+       var twh = balOfWhwd(i);
+       t_wh = t_wh + twh;
+       if (twh > 0) {
+          a = a + twh + " WhiteHats ; ";
+       }
+
        // if ((e + dt + db + m + tp + td ) > 0) {
-       if ((e + tmy) > 0) {
+       if ((e + tmy + twh) > 0) {
           s = s + "== ";
        }
 
@@ -83,7 +92,7 @@ function balByAccts() {
    }
 
    // return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " + "TempDAO == " + t_tp + " ;; " + "DAO == " + t_td + " ;; " + "MKR == " + t_m + " ;; ";
-   return _cur + " == " + t_e + " ;; " + "MyDAO == " + t_my + " ;; "; 
+   return _cur + " == " + t_e + " ;; " + "MyDAO == " + t_my + " ;; " + "WhiteHat == " + t_wh + " ;; "; 
 
 }
 
@@ -104,6 +113,10 @@ function balByAssets(asset) {
       console.log(balShowMydao());
       return "MyDAO == " + balTotalMydao() + " ;; "; 
    }
+   else if (asset == "whwd") {
+      console.log(balShowWhwd());
+      return "WhiteHat == " + balTotalWhwd() + " ;; "; 
+   }
    // else if (asset == "tempdao") {
    //    console.log(balShowTempdao());
    //    return "tempDAO == " + balTotalTempdao() + " ;; "; 
@@ -113,9 +126,10 @@ function balByAssets(asset) {
       // console.log(balShowDgd());
       // console.log(balShowMkr());
       console.log(balShowMydao());
+      console.log(balShowWhwd());
       // console.log(balShowTempdao());
       // return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "tempDAO == " + balTotalTempdao() + " ;; " + "MKR == " + balTotalMkr() + " ;; ";
-      return _cur + " == " + balTotal() + " ;; " + "My DAO == " + balTotalMydao() + " ;; ";
+      return _cur + " == " + balTotal() + " ;; " + "My DAO == " + balTotalMydao() + " ;; " + "WhiteHat withdraw == " + balTotalWhwd() + " ;; ";
    }
 
    // return "Total 2 assets...";

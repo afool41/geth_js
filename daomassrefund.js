@@ -1,4 +1,4 @@
-daomassrefund_addr="0x37F65bA79001169Aa294336bba5f91EDFbdadB7b";
+daomassrefund_addr="0x3dA71558a40F63b960196cC0679847fF50faD22B";
 daomassrefund_abi=[{"constant":false,"inputs":[],"name":"clawback","outputs":[],"type":"function"},{"constant":false,"inputs":[{"name":"_childDAO","type":"address"}],"name":"withdraw","outputs":[],"type":"function"},{"constant":false,"inputs":[],"name":"WithDrawPreForkChildDAO","outputs":[],"type":"function"},{"constant":true,"inputs":[{"name":"_childDAO","type":"address"},{"name":"_tokenHolder","type":"address"}],"name":"checkMyWithdraw","outputs":[{"name":"","type":"uint256"}],"type":"function"}];
 
 daomassrefund = eth.contract(daomassrefund_abi).at(daomassrefund_addr);
