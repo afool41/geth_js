@@ -8,7 +8,7 @@ var _cur = "ETH";
 loadScript("wallet.js");
 loadScript("digix.js");
 // loadScript("thedao.js");
-// loadScript("tempdao.js");
+loadScript("tempdao.js");
 loadScript("makerdao.js");
 // loadScript("btcrelay.js");
 loadScript("daomassrefund.js");
@@ -75,7 +75,7 @@ function balByAccts() {
        }
 
        // if ((e + dt + db + m + tp + td ) > 0) {
-       if ((e + dt + db + m ) > 0) {
+       if ((e + dt + db + dmr + m ) > 0) {
           s = s + "== ";
        }
 

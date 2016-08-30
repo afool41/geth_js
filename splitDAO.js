@@ -55,8 +55,11 @@ tempdao.splitDAO(1, acct[6], {from:acct[0], gas:300000});
 // wait 27-day-creation-period again
 mydao_status();
 
-// and then make a normal Proposal to send "all etc in Wei == eth.getBalance(mydao_addr)" to curator ( myself ). vote yes and then wait 14 days before sending out the ether...
-mydao.newProposal(acct[6], eth.getBalance(mydao_addr), "afool finally retrieving ALL etc", "", 1209600, false, {from:acct[6], gas:300000});
+// and then make a normal Proposal ( MUST from a DAO token holder, curator is NOT necessarily a token holder! ) 
+// to send "all etc in Wei == eth.getBalance(mydao_addr)" to curator ( myself ).
+// Then vote yes from all my accounts
+// and then wait 14 days before sending out the ether...
+mydao.newProposal(acct[6], eth.getBalance(mydao_addr), "afool finally retrieving ALL etc", "", 1209600, false, {from:acct[5], gas:300000});
 
 // then vote yes on new proposal..
 mydao.vote(1, true, {from:acct[5]});
