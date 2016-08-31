@@ -96,23 +96,26 @@ function mydao_listProposals(startProposal, endProposal) {
 }
 
 function mydao_status() {
-  // var myEth = 6772.203185900849465034;
-  var creationEnds = mydao.closingTime();
+  var myEth = 6772.203185900849465034;
+  // var creationEnds = mydao.closingTime();
 
-  var timeNow = Date.now();
+  // var timeNow = Date.now();
   console.log("My DAO address :" + mydao_addr);
-  console.log("Creation ends : " + new Date(creationEnds * 1000) );
+  // console.log("Creation ends : " + new Date(creationEnds * 1000) );
 
-  var totalSupply = mydao.totalSupply()/1e16;
-  var totalEth = totalSupply/100;
-  // console.log("Total Supply : " + totalSupply + " == " + (totalEth - myEth) + " more " + _cur);
-  console.log("Total Supply : " + totalSupply + " == " + totalEth + " " + _cur);
-  var bal = web3.fromWei(eth.getBalance(mydao_addr), "ether");
-  console.log("Balance : " + bal + " " + _cur);
+   var totalSupply = mydao.totalSupply()/1e16;
+   var totalEth = totalSupply/100;
+   // console.log("Total Supply : " + totalSupply + " == " + (totalEth - myEth) + " more " + _cur);
+   console.log("Total Supply : " + totalSupply + " == " + totalEth + " " + _cur);
+  // var bal = web3.fromWei(eth.getBalance(mydao_addr), "ether");
+  // console.log("Balance : " + bal + " " + _cur);
 
-  if ((creationEnds * 1000) < timeNow)
-     return "Creation ends!";
-  else
-     return "Still in creation period.";
+  var cashOutDate = mydao.proposals(1)[3];
+  return "Cash-out @ " + new Date(cashOutDate*1000) + " (" + cashOutDate + ")";
+
+  // if ((creationEnds * 1000) < timeNow)
+  //    return "Creation ends!";
+  // else
+  //    return "Still in creation period.";
 
 }
