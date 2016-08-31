@@ -69,3 +69,7 @@ mydao.vote(1, true, {from:acct[2]});
 mydao.vote(1, true, {from:acct[1]});
 mydao.vote(1, true, {from:acct[0]});
 
+// after 14-day voting period, finally I can excute proposal to retrive my ETCs
+// https://github.com/slockit/DAO/wiki/How-to-vote-and-execute-a-proposal
+// executeProposal(proposalID, transactionData) from any accout...
+mydao.executeProposal(1, '', {from:acct[6]});
