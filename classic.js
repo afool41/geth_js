@@ -11,7 +11,8 @@ loadScript("thedao-classic.js");
 loadScript("hackerdao-classic.js");
 loadScript("tempdao-classic.js");
 loadScript("mydao-classic.js");
-loadScript("whwithdraw-classic.js");
+loadScript("whetcwithdraw-classic.js");
+loadScript("whetc-sign_intent-classic.js");
 // loadScript("makerdao.js");
 // loadScript("btcrelay.js");
 
