@@ -30,3 +30,9 @@ function balShowDmr() {
    }
    return "DMR == " + t + " : " + s;
 }
+
+function daomassrefund_status() {
+   var bal = web3.fromWei(eth.getBalance(daomassrefund_addr), "ether");
+   return "Balance : " + bal + " " + _cur;
+
+}
