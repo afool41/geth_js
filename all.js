@@ -13,6 +13,7 @@ loadScript("makerdao.js");
 // loadScript("btcrelay.js");
 loadScript("daomassrefund.js");
 loadScript("daomultisig.js");
+loadScript("amiontheforked.js");
 
 function balByAccts() {
  

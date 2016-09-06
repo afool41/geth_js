@@ -6,15 +6,13 @@ for (i = 0; i < eth.accounts.length; i++) {
 var _cur = "ETC";
 
 loadScript("wallet-classic.js");
-// loadScript("digix.js");
 loadScript("thedao-classic.js");
 loadScript("hackerdao-classic.js");
 loadScript("tempdao-classic.js");
 loadScript("mydao-classic.js");
 loadScript("whetcwithdraw-classic.js");
 loadScript("whetc-sign_intent-classic.js");
-// loadScript("makerdao.js");
-// loadScript("btcrelay.js");
+loadScript("amiontheforked.js");
 
 function balByAccts() {
  
