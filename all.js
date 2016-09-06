@@ -12,6 +12,7 @@ loadScript("tempdao.js");
 loadScript("makerdao.js");
 // loadScript("btcrelay.js");
 loadScript("daomassrefund.js");
+loadScript("daomultisig.js");
 
 function balByAccts() {
  
