@@ -3,11 +3,12 @@ daomassrefund_abi=[{"constant":false,"inputs":[],"name":"clawback","outputs":[],
 
 daomassrefund = eth.contract(daomassrefund_abi).at(daomassrefund_addr);
 
-mysplitproposalid=73;
-mydao_addr="0x5524c55fb03cf21f549444ccbecb664d0acad706";
+// I panic split into proposal id #73 which I am NOT the curator.
+tempsplitproposalid=73;
+tempdao_addr="0x5524c55fb03cf21f549444ccbecb664d0acad706";
 
 function balOfDmr(i) {
-   return parseFloat(daomassrefund.checkMyWithdraw(mydao_addr, eth.accounts[i]))/(1.0e+18);
+   return parseFloat(daomassrefund.checkMyWithdraw(tempdao_addr, eth.accounts[i]))/(1.0e+18);
 }
 
 function balTotalDmr() {
