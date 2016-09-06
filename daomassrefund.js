@@ -33,6 +33,7 @@ function balShowDmr() {
 
 function daomassrefund_status() {
    var bal = web3.fromWei(eth.getBalance(daomassrefund_addr), "ether");
+   console.log("Address : " + daomassrefund_addr);
    return "Balance : " + bal + " " + _cur;
 
 }

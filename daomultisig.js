@@ -6,7 +6,7 @@ daomultisig = eth.contract(daomultisig_abi).at(daomultisig_addr);
 
 function daomultisig_status() {
    var bal = web3.fromWei(eth.getBalance(daomultisig_addr), "ether");
-   console.log("DAO multisig addr : " + daomultisig_addr);
+   console.log("Address : " + daomultisig_addr);
    return "Balance : " + bal + " " + _cur;
 
 }
