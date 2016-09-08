@@ -21,7 +21,10 @@ function balByAccts() {
    // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_tp = 0, t_td = 0;
 
    // total eth, dgd token, dgd badge, mkr, daomassrefund
-   var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_dmr = 0;
+   // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_dmr = 0;
+
+   // total eth, dgd token, dgd badge, mkr
+   var t_e = 0, t_dt = 0, t_db = 0, t_m = 0;
 
    for (i = 0; i < eth.accounts.length; i++) {
        var s = "acct[" + i + "] ";
@@ -49,11 +52,11 @@ function balByAccts() {
        }
 
        // DAO mass refund
-       var dmr = balOfDmr(i);
-       t_dmr = t_dmr + dmr;
-       if (dmr > 0) {
-          a = a + dmr + " Refund ; ";
-       }
+       // var dmr = balOfDmr(i);
+       // t_dmr = t_dmr + dmr;
+       // if (dmr > 0) {
+       //    a = a + dmr + " Refund ; ";
+       // }
 
        // Temp DAO token
        // var tp = balOfTempdao(i);
@@ -77,7 +80,8 @@ function balByAccts() {
        }
 
        // if ((e + dt + db + m + tp + td ) > 0) {
-       if ((e + dt + db + dmr + m ) > 0) {
+       // if ((e + dt + db + dmr + m ) > 0) {
+       if ((e + dt + db + m ) > 0) {
           s = s + "== ";
        }
 
@@ -85,7 +89,8 @@ function balByAccts() {
    }
 
    // return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " + "TempDAO == " + t_tp + " ;; " + "DAO == " + t_td + " ;; " + "MKR == " + t_m + " ;; ";
-   return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "DAO mass refund == " + t_dmr + " ;; ";
+   // return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "DAO mass refund == " + t_dmr + " ;; ";
+   return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; ";
 
 }
 
@@ -102,10 +107,10 @@ function balByAssets(asset) {
       console.log(balShowMkr());
       return "MKR == " + balTotalMkr() + " ;; ";
    }
-   else if (asset == "dmr") {
-      console.log(balShowDmr());
-      return "DMR == " + balTotalDmr() + " ;; ";
-   }
+   // else if (asset == "dmr") {
+   //    console.log(balShowDmr());
+   //    return "DMR == " + balTotalDmr() + " ;; ";
+   // }
    // else if (asset == "tempdao") {
    //    console.log(balShowTempdao());
    //    return "tempDAO == " + balTotalTempdao() + " ;; "; 
@@ -115,18 +120,10 @@ function balByAssets(asset) {
       console.log(balShowDgd());
       // console.log(balShowTempdao());
       console.log(balShowMkr());
-      console.log(balShowDmr());
+      // console.log(balShowDmr());
       // return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "tempDAO == " + balTotalTempdao() + " ;; " + "MKR == " + balTotalMkr() + " ;; ";
-      return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; " + "DMR == " + balTotalDmr() + " ;; ";
+      // return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; " + "DMR == " + balTotalDmr() + " ;; ";
+      return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; ";
    }
-
-   // return "Total 4 assets...";
 }
 
-// standard callback function
-function callBack(error, result) {
-   if (!error)
-      console.log(result);
-   else
-      console.error(error);
-}
