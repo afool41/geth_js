@@ -5,7 +5,7 @@ thedao_abi_full=[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name"
 thedao = eth.contract(thedao_abi_full).at(thedao_addr);
 
 function balOfThedao(i) {
-   return parseFloat(thedao.balanceOf(eth.accounts[i]))/(1.0e+16);
+   return parseFloat(thedao.balanceOf(eth.accounts[i])).dividedBy(1.0e+16);
 }
 
 function balTotalThedao() {
@@ -41,7 +41,7 @@ function thedao_listProposals(startProposal, endProposal) {
     endProposal = numberOfProposals;
   }
 
-  var totalSupply = thedao.totalSupply()/1e16;
+  var totalSupply = thedao.totalSupply().dividedBy(1e16);
 
   for (i = startProposal; i <= endProposal; i++) {
     var proposal = thedao.proposals(i);  
@@ -52,17 +52,17 @@ function thedao_listProposals(startProposal, endProposal) {
     var timeNow = Date.now();
     var open = proposal[4];
     var proposalPassed = proposal[5];
-    var yea = proposal[9] / 1e16;
-    var yeaPercentOfTotalSupply = (yea / totalSupply) * 100;
-    var nay = proposal[10] / 1e16;
-    var nayPercentOfTotalSupply = (nay / totalSupply) * 100;
+    var yea = proposal[9].dividedBy(1e16);
+    var yeaPercentOfTotalSupply = yea.dividedBy(totalSupply) * 100;
+    var nay = proposal[10].dividedBy(1e16);
+    var nayPercentOfTotalSupply = nay.dividedBy(totalSupply) * 100;
     var totalPercentOfTotalSupply = yeaPercentOfTotalSupply + nayPercentOfTotalSupply;
     var yeaAndNay = yea + nay;
     var yeaPercent;
     var nayPercent;
     if (yeaAndNay > 0) {
-       yeaPercent = (yea / yeaAndNay) * 100;
-       nayPercent = (nay / yeaAndNay) * 100;
+       yeaPercent = yea.dividedBy(yeaAndNay) * 100;
+       nayPercent = nay.dividedBy(yeaAndNay) * 100;
     } else {
        yeaPercent = 0;
        nayPercent = 0;
@@ -96,7 +96,7 @@ function thedao_listProposals(startProposal, endProposal) {
 }
 
 function thedao_status() {
-  var totalSupply = thedao.totalSupply()/1e16;
+  var totalSupply = thedao.totalSupply().dividedBy(1e16);
   var bal = web3.fromWei(eth.getBalance(thedao_addr), "ether");
   return "total Supply : " + totalSupply + ", Balance = " + bal + " " + _cur;
 }

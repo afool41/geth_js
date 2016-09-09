@@ -6,7 +6,7 @@ thedao_abi_fragment = [{"constant":false,"inputs":[{"name":"_spender","type":"ad
 thedao = eth.contract(thedao_abi_fragment).at(thedao_addr);
 
 function balOfThedao(i) {
-   return parseFloat(thedao.balanceOf(eth.accounts[i]))/(1.0e+16);
+   return parseFloat(thedao.balanceOf(eth.accounts[i])).dividedBy(1.0e+16);
 }
 
 function balTotalThedao() {

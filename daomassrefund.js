@@ -8,7 +8,7 @@ tempsplitproposalid=73;
 tempdao_addr="0x5524c55fb03cf21f549444ccbecb664d0acad706";
 
 function balOfDmr(i) {
-   return parseFloat(daomassrefund.checkMyWithdraw(tempdao_addr, eth.accounts[i]))/(1.0e+18);
+   return parseFloat(daomassrefund.checkMyWithdraw(tempdao_addr, eth.accounts[i])).dividedBy(1.0e+18);
 }
 
 function balTotalDmr() {

@@ -20,7 +20,7 @@ function balByAccts() {
    // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_tp = 0, t_td = 0;
 
    // total etc, mydao, whwd
-   var t_e = 0, t_my = 0, t_wh = 0;
+   var t_e = 0.0, t_my = 0.0, t_wh = 0.0;
 
    for (i = 0; i < eth.accounts.length; i++) {
        var s = "acct[" + i + "] ";
@@ -28,7 +28,7 @@ function balByAccts() {
 
        // etc
        var e = balOf(i); 
-       t_e = t_e + e;
+       t_e = t_e + parseFloat(e);
        if (e > 0) {
           a = a + e + " " + _cur + " ; ";
        }
@@ -70,7 +70,7 @@ function balByAccts() {
 
        // My DAO token
        var tmy = balOfMydao(i);
-       t_my = t_my + tmy;
+       t_my = t_my + parseFloat(tmy);
        if (tmy > 0) {
           a = a + tmy + " myDAOs ; ";
        }

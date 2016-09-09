@@ -5,7 +5,7 @@ var whwd_abi = [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"n
 var whwd = web3.eth.contract(whwd_abi).at(whwd_addr); 
 
 function balOfWhwd(i) {
-   return parseFloat(whwd.balanceOf(eth.accounts[i]))/(1.0e+18);
+   return whwd.balanceOf(eth.accounts[i]).dividedBy(1.0e+18);
 }
 
 function balTotalWhwd() {

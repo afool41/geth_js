@@ -8,7 +8,7 @@ var mkr_contract_addr = mkr.address;
 var mkr_contract_abi = mkr.abi;
 
 function balOfMkr(i) {
-   return parseFloat(mkr.balanceOf(eth.accounts[i]))/(1.0e+18);
+   return mkr.balanceOf(eth.accounts[i]).dividedBy(1.0e+18);
 }
 
 function balTotalMkr() {

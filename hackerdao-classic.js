@@ -8,7 +8,7 @@ hackerdao_abi_full=[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"na
 hackerdao = eth.contract(hackerdao_abi_full).at(hackerdao_addr);
 
 function balOfHackerdao(i) {
-   return parseFloat(hackerdao.balanceOf(eth.accounts[i]))/(1.0e+16);
+   return parseFloat(hackerdao.balanceOf(eth.accounts[i])).dividedBy(1.0e+16);
 }
 
 function balTotalHackerdao() {
@@ -44,7 +44,7 @@ function hackerdao_listProposals(startProposal, endProposal) {
     endProposal = numberOfProposals;
   }
 
-  var totalSupply = hackerdao.totalSupply()/1e16;
+  var totalSupply = hackerdao.totalSupply().dividedBy(1e16);
 
   for (i = startProposal; i <= endProposal; i++) {
     var proposal = hackerdao.proposals(i);  
@@ -55,17 +55,17 @@ function hackerdao_listProposals(startProposal, endProposal) {
     var timeNow = Date.now();
     var open = proposal[4];
     var proposalPassed = proposal[5];
-    var yea = proposal[9] / 1e16;
-    var yeaPercentOfTotalSupply = (yea / totalSupply) * 100;
-    var nay = proposal[10] / 1e16;
-    var nayPercentOfTotalSupply = (nay / totalSupply) * 100;
+    var yea = proposal[9].dividedBy(1e16);
+    var yeaPercentOfTotalSupply = yea.dividedBy(totalSupply) * 100;
+    var nay = proposal[10].dividedBy(1e16);
+    var nayPercentOfTotalSupply = nay.dividedBy(totalSupply) * 100;
     var totalPercentOfTotalSupply = yeaPercentOfTotalSupply + nayPercentOfTotalSupply;
     var yeaAndNay = yea + nay;
     var yeaPercent;
     var nayPercent;
     if (yeaAndNay > 0) {
-       yeaPercent = (yea / yeaAndNay) * 100;
-       nayPercent = (nay / yeaAndNay) * 100;
+       yeaPercent = yea.dividedBy(yeaAndNay) * 100;
+       nayPercent = nay.dividedBy(yeaAndNay) * 100;
     } else {
        yeaPercent = 0;
        nayPercent = 0;
@@ -99,7 +99,7 @@ function hackerdao_listProposals(startProposal, endProposal) {
 }
 
 function hackerdao_status() {
-  var totalSupply = hackerdao.totalSupply()/1e16;
+  var totalSupply = hackerdao.totalSupply().dividedBy(1e16);
   var bal = web3.fromWei(eth.getBalance(hackerdao_addr), "ether");
   var cashOutDate = hackerdao.proposals(2)[3];
   console.log("Hacker DAO address : " + hackerdao_addr);

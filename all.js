@@ -32,21 +32,21 @@ function balByAccts() {
 
        // ether
        var e = balOf(i); 
-       t_e = t_e + e;
+       t_e = t_e + parseFloat(e);
        if (e > 0) {
           a = a + e + " " + _cur +"; ";
        }
 
        // dgd token
        var dt = balOfDgd(i);
-       t_dt = t_dt + dt;
+       t_dt = t_dt + parseFloat(dt);
        if (dt > 0) {
           a = a + dt + " DGDs ; ";
        }
 
        // dgd badge
        var db =  balOfDgdBadge(i);
-       t_db = t_db + db;
+       t_db = t_db + parseFloat(db);
        if (db > 0) {
           a = a + db + " DGD badge ; ";
        }
@@ -74,7 +74,7 @@ function balByAccts() {
 
        // MKR
        var m = balOfMkr(i);
-       t_m = t_m + m;
+       t_m = t_m + parseFloat(m);
        if (m > 0) {
           a = a + m + " MKR ; ";
        }

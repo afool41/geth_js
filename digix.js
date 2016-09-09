@@ -9,7 +9,7 @@ dgd_badge_contract_abi=[{"constant":false,"inputs":[{"name":"_spender","type":"a
 dgd_badge= eth.contract(dgd_badge_contract_abi).at(dgd_badge_contract_addr);
 
 function balOfDgd(i) {
-   return parseFloat(dgd_token.balanceOf(eth.accounts[i]))/(1.0e+9);
+   return dgd_token.balanceOf(eth.accounts[i]).dividedBy(1.0e+9);
 }
 
 function balTotalDgd() {
