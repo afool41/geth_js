@@ -31,50 +31,29 @@ function balByAccts() {
        var a = "";   // assets
 
        // ether
-       var e = balOf(i); 
-       t_e = t_e + parseFloat(e);
+       var e = parseFloat(balOf(i)); 
+       t_e = t_e + e;
        if (e > 0) {
           a = a + e + " " + _cur +"; ";
        }
 
        // dgd token
-       var dt = balOfDgd(i);
-       t_dt = t_dt + parseFloat(dt);
+       var dt = parseFloat(balOfDgd(i));
+       t_dt = t_dt + dt;
        if (dt > 0) {
           a = a + dt + " DGDs ; ";
        }
 
        // dgd badge
-       var db =  balOfDgdBadge(i);
-       t_db = t_db + parseFloat(db);
+       var db = parseFloat(balOfDgdBadge(i));
+       t_db = t_db + db;
        if (db > 0) {
           a = a + db + " DGD badge ; ";
        }
 
-       // DAO mass refund
-       // var dmr = balOfDmr(i);
-       // t_dmr = t_dmr + dmr;
-       // if (dmr > 0) {
-       //    a = a + dmr + " Refund ; ";
-       // }
-
-       // Temp DAO token
-       // var tp = balOfTempdao(i);
-       // t_tp = t_tp + tp;
-       // if (tp > 0) {
-       //    a = a + tp + " TempDAOs ; ";
-       // }
-
-       // The DAO token
-       // var td = balOfThedao(i);
-       // t_td = t_td + td;
-       // if (td > 0) {
-       //    a = a + td + " DAOs ; ";
-       // }
-
        // MKR
-       var m = balOfMkr(i);
-       t_m = t_m + parseFloat(m);
+       var m = parseFloat(balOfMkr(i));
+       t_m = t_m + m;
        if (m > 0) {
           a = a + m + " MKR ; ";
        }
