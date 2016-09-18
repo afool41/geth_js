@@ -5,6 +5,7 @@ for (i = 0; i < eth.accounts.length; i++) {
 
 var _cur = "ETH";
 var etc_addr = "0xe766ac7915e126f429abd534135179144627d01a";
+var metamask_addr = "0x54e13ca8e3be520a6858acee04c6e1f562ddf443";
 
 loadScript("wallet.js");
 loadScript("digix.js");
@@ -32,6 +33,9 @@ function balByAccts() {
        var s = "acct[" + i + "] ";
        if (eth.accounts[i] == etc_addr) {
            s = "acct[" + i + "] #ETC#";
+       }
+       else if (eth.accounts[i] == metamask_addr) {
+           s = "acct[" + i + "] #MetaMask# ";
        }
 
        var a = "";   // assets
