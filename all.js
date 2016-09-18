@@ -4,6 +4,7 @@ for (i = 0; i < eth.accounts.length; i++) {
 }
 
 var _cur = "ETH";
+var etc_addr = "0xe766ac7915e126f429abd534135179144627d01a";
 
 loadScript("wallet.js");
 loadScript("digix.js");
@@ -29,6 +30,10 @@ function balByAccts() {
 
    for (i = 0; i < eth.accounts.length; i++) {
        var s = "acct[" + i + "] ";
+       if (eth.accounts[i] == etc_addr) {
+           s = "acct[" + i + "] #ETC#";
+       }
+
        var a = "";   // assets
 
        // ether
