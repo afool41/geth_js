@@ -24,9 +24,9 @@ function balByAccts() {
    var t_e = 0.0, t_my = 0.0, t_wh = 0.0;
 
    for (i = 0; i < eth.accounts.length; i++) {
-       var s = "acct[" + i + "] ";
+       var s = "acct[" + i + "](" + eth.getTransactionCount(eth.accounts[i]) + ")";
        if (eth.accounts[i] != etc_addr) {
-           s = "acct[" + i + "] #ETH#";
+           s = s + "#ETH ";
        }
 
        var a = "";   // assets

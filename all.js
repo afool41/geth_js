@@ -30,13 +30,14 @@ function balByAccts() {
    var t_e = 0, t_dt = 0, t_db = 0, t_m = 0;
 
    for (i = 0; i < eth.accounts.length; i++) {
-       var s = "acct[" + i + "] ";
+       var s = "acct[" + i + "](" + eth.getTransactionCount(eth.accounts[i]) + ")";
        if (eth.accounts[i] == etc_addr) {
-           s = "acct[" + i + "] #ETC#";
+           s = s + "#ETC ";
        }
        else if (eth.accounts[i] == metamask_addr) {
-           s = "acct[" + i + "] #MetaMask# ";
+           s = s + "#MetaMask ";
        }
+
 
        var a = "";   // assets
 
