@@ -9,20 +9,20 @@ function balOfWhwd(i) {
 }
 
 function balTotalWhwd() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0)
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfWhwd(i);
+       t = t.plus(balOfWhwd(i));
    }
    return t + " " + _cur;
 }
 
 function balShowWhwd() {
    s = "";
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b = balOfWhwd(i);
        if (b > 0) {
-          t = t + b;
+          t = t.plus(b);
           s = s + i + ") " + b + " ; ";
        }
    }

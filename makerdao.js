@@ -12,20 +12,20 @@ function balOfMkr(i) {
 }
 
 function balTotalMkr() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfMkr(i);
+       t = t.plus(balOfMkr(i));
    }
    return t;
 }
 
 function balShowMkr() {
    s = "";
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b = balOfMkr(i);
        if (b > 0) {
-          t = t + b;
+          t = t.plus(b);
           s = s + i + ") " + b + " ; ";
        }
    }

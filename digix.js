@@ -13,35 +13,35 @@ function balOfDgd(i) {
 }
 
 function balTotalDgd() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfDgd(i);
+       t = t.plus(balOfDgd(i));
    }
    return t;
 }
 
 function balOfDgdBadge(i) {
-   return parseFloat(dgd_badge.balanceOf(eth.accounts[i]));
+   return dgd_badge.balanceOf(eth.accounts[i]);
 }
 
 function balTotalDgdBadge() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfDgdBadge(i);
+       t = t.plus(balOfDgdBadge(i));
    }
    return t;
 }
 
 function balShowDgd() {
    s = "";
-   t1 = parseFloat(0.0);
-   t2 = parseFloat(0.0);
+   t1 = web3.toBigNumber(0);
+   t2 = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b1 = balOfDgd(i);
        var b2 = balOfDgdBadge(i);
        if ((b1 + b2) > 0) {
-          t1 = t1 + b1;
-          t2 = t2 + b2;
+          t1 = t1.plus(b1);
+          t2 = t2.plus(b2);
           s = s + i + ") " + b1 + " tokens & " + b2 + " badges ; ";
        }
    }

@@ -9,20 +9,20 @@ function balOfMydao(i) {
 }
 
 function balTotalMydao() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfMydao(i);
+       t = t.plus(balOfMydao(i));
    }
    return t;
 }
 
 function balShowMydao() {
    s = "";
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b = balOfMydao(i);
        if (b > 0) {
-          t = t + b;
+          t = t.plus(b);
           s = s + i + ") " + b + " ; ";
        }
    }

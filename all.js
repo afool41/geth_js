@@ -16,77 +16,76 @@ loadScript("makerdao.js");
 loadScript("daomassrefund.js");
 loadScript("daomultisig.js");
 loadScript("amiontheforked.js");
-// loadScript("augurRep.js");
+loadScript("augurRep.js");
 
 function balByAccts() {
  
-   // total eth, dgd token, dgd badge, mkr, tempdao  & thedao tokens
-   // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_tp = 0, t_td = 0;
-
-   // total eth, dgd token, dgd badge, mkr, daomassrefund
-   // var t_e = 0, t_dt = 0, t_db = 0, t_m = 0, t_dmr = 0;
-
-   // total eth, dgd token, dgd badge, mkr
-   var t_e = 0, t_dt = 0, t_db = 0, t_m = 0;
+   // total eth, dgd token, dgd badge, mkr, augur Rep
+   var t_e = web3.toBigNumber(0), t_dt = web3.toBigNumber(0), t_db = web3.toBigNumber(0), t_m = web3.toBigNumber(0), t_r = web3.toBigNumber(0);
 
    for (i = 0; i < eth.accounts.length; i++) {
-       var s = "acct[" + i + "](" + eth.getTransactionCount(eth.accounts[i]) + ")";
+       var s = "acct[" + i + "]";
        if (eth.accounts[i] == etc_addr) {
-           s = s + "#ETC ";
+           s = s + "*ETC*";
        }
        else if (eth.accounts[i] == metamask_addr) {
-           s = s + "#MetaMask ";
+           s = s + "*MetaMask*";
        }
+       s = s + "(" + eth.getTransactionCount(eth.accounts[i]) + ")";
 
 
        var a = "";   // assets
 
        // ether
-       var e = parseFloat(balOf(i)); 
-       t_e = t_e + e;
+       var e = web3.toBigNumber(balOf(i)); 
+       t_e = t_e.plus(e);
        if (e > 0) {
           a = a + e + " " + _cur +"; ";
        }
 
        // dgd token
-       var dt = parseFloat(balOfDgd(i));
-       t_dt = t_dt + dt;
+       var dt = web3.toBigNumber(balOfDgd(i));
+       t_dt = t_dt.plus(dt);
        if (dt > 0) {
           a = a + dt + " DGDs ; ";
        }
 
        // dgd badge
-       var db = parseFloat(balOfDgdBadge(i));
-       t_db = t_db + db;
+       var db = web3.toBigNumber(balOfDgdBadge(i));
+       t_db = t_db.plus(db);
        if (db > 0) {
           a = a + db + " DGD badge ; ";
        }
 
        // MKR
-       var m = parseFloat(balOfMkr(i));
-       t_m = t_m + m;
+       var m = web3.toBigNumber(balOfMkr(i));
+       t_m = t_m.plus(m);
        if (m > 0) {
           a = a + m + " MKR ; ";
        }
 
-       // if ((e + dt + db + m + tp + td ) > 0) {
-       // if ((e + dt + db + dmr + m ) > 0) {
-       if ((e + dt + db + m ) > 0) {
-          s = s + "== ";
+       // Augur Rep
+       var r = web3.toBigNumber(balOfRep(i));
+       t_r = t_r.plus(r);
+       if (r > 0) {
+          a = a + r + " REP ; ";
+       }
+
+       //if ((e + dt + db + m + r) > 0) {
+       if (e.plus(dt).plus(db).plus(m).plus(r) > 0) {
+          s = s + " == ";
        }
 
        console.log(s + a);
    }
 
-   // return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " + "TempDAO == " + t_tp + " ;; " + "DAO == " + t_td + " ;; " + "MKR == " + t_m + " ;; ";
-   // return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "DAO mass refund == " + t_dmr + " ;; ";
-   return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; ";
+   return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "REP == " + t_r + " ;; ";
 
 }
 
 function balByAssets(asset) {
    if (asset == "eth") {
-      console.log(balShowEth());
+      console.log(balShow());
       return _cur + " == " + balTotal() + " ;; ";
    }
    else if (asset == "dgd") {
@@ -97,23 +96,16 @@ function balByAssets(asset) {
       console.log(balShowMkr());
       return "MKR == " + balTotalMkr() + " ;; ";
    }
-   // else if (asset == "dmr") {
-   //    console.log(balShowDmr());
-   //    return "DMR == " + balTotalDmr() + " ;; ";
-   // }
-   // else if (asset == "tempdao") {
-   //    console.log(balShowTempdao());
-   //    return "tempDAO == " + balTotalTempdao() + " ;; "; 
-   // }
+   else if (asset == "rep") {
+      console.log(balShowRep());
+      return "REP == " + balTotalRep() + " ;; ";
+   }
    else {
-      console.log(balShowEth());
+      console.log(balShow());
       console.log(balShowDgd());
-      // console.log(balShowTempdao());
       console.log(balShowMkr());
-      // console.log(balShowDmr());
-      // return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "tempDAO == " + balTotalTempdao() + " ;; " + "MKR == " + balTotalMkr() + " ;; ";
-      // return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; " + "DMR == " + balTotalDmr() + " ;; ";
-      return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; ";
+      console.log(balShowRep());
+      return _cur + " == " + balTotal() + " ;; " + "Dgx DGD == " + balTotalDgd() + " tokens  & " + balTotalDgdBadge() + " badges ;; " + "MKR == " + balTotalMkr() + " ;; " + "Augur Rep == " + balTotalRep() + " ;; ";
    }
 }
 

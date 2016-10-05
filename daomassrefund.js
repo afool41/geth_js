@@ -8,11 +8,11 @@ tempsplitproposalid=73;
 tempdao_addr="0x5524c55fb03cf21f549444ccbecb664d0acad706";
 
 function balOfDmr(i) {
-   return parseFloat(daomassrefund.checkMyWithdraw(tempdao_addr, eth.accounts[i])).dividedBy(1.0e+18);
+   return web3.toBigNumber(daomassrefund.checkMyWithdraw(tempdao_addr, eth.accounts[i])).dividedBy(1.0e+18);
 }
 
 function balTotalDmr() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        t = t + balOfDmr(i);
    }
@@ -21,7 +21,7 @@ function balTotalDmr() {
 
 function balShowDmr() {
    s = "";
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b = balOfDmr(i);
        if (b > 0) {

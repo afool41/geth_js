@@ -5,24 +5,24 @@ tempdao_abi_full=[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name
 tempdao = eth.contract(tempdao_abi_full).at(tempdao_addr);
 
 function balOfTempdao(i) {
-   return parseFloat(tempdao.balanceOf(eth.accounts[i])).dividedBy(1.0e+16);
+   return tempdao.balanceOf(eth.accounts[i]).dividedBy(1.0e+16);
 }
 
 function balTotalTempdao() {
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
-       t = t + balOfTempdao(i);
+       t = t.plus(balOfTempdao(i));
    }
    return t;
 }
 
 function balShowTempdao() {
    s = "";
-   t = parseFloat(0.0);
+   t = web3.toBigNumber(0);
    for (i = 0; i < eth.accounts.length; i++) {
        var b = balOfTempdao(i);
        if (b > 0) {
-          t = t + b;
+          t = t.plus(b);
           s = s + i + ") " + b + " ; ";
        }
    }
