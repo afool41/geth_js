@@ -5,12 +5,12 @@ var whwd_abi = [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"n
 var whwd = web3.eth.contract(whwd_abi).at(whwd_addr); 
 
 function balOfWhwd(i) {
-   return whwd.balanceOf(eth.accounts[i]).dividedBy(1.0e+18);
+   return whwd.balanceOf(acct[i]).dividedBy(1.0e+18);
 }
 
 function balTotalWhwd() {
    t = web3.toBigNumber(0)
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfWhwd(i));
    }
    return t + " " + _cur;
@@ -19,7 +19,7 @@ function balTotalWhwd() {
 function balShowWhwd() {
    s = "";
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var b = balOfWhwd(i);
        if (b > 0) {
           t = t.plus(b);

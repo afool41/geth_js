@@ -1,6 +1,9 @@
-var acct = [];
+if (typeof(acct) == 'undefined') {
+   var acct = [];
+}
+
 for (i = 0; i < eth.accounts.length; i++) {
-    acct[i] = eth.accounts[i];
+    acct[acct.length] = eth.accounts[i];
 }
 
 var _cur = "ETH";
@@ -23,15 +26,15 @@ function balByAccts() {
    // total eth, dgd token, dgd badge, mkr, augur Rep
    var t_e = web3.toBigNumber(0), t_dt = web3.toBigNumber(0), t_db = web3.toBigNumber(0), t_m = web3.toBigNumber(0), t_r = web3.toBigNumber(0);
 
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var s = "acct[" + i + "]";
-       if (eth.accounts[i] == etc_addr) {
+       if (acct[i] == etc_addr) {
            s = s + "*ETC*";
        }
-       else if (eth.accounts[i] == metamask_addr) {
+       else if (acct[i] == metamask_addr) {
            s = s + "*MetaMask*";
        }
-       s = s + "(" + eth.getTransactionCount(eth.accounts[i]) + ")";
+       s = s + "(" + eth.getTransactionCount(acct[i]) + ")";
 
 
        var a = "";   // assets

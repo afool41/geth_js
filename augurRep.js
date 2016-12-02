@@ -7,12 +7,12 @@ myAugurRep = 17901.96829666;
 augurRep = eth.contract(augurRep_abi).at(augurRep_addr);
 
 function balOfRep(i) {
-   return augurRep.balanceOf(eth.accounts[i]).dividedBy(1e18);
+   return augurRep.balanceOf(acct[i]).dividedBy(1e18);
 }
 
 function balTotalRep() {
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfRep(i));
    }
    return t;
@@ -21,7 +21,7 @@ function balTotalRep() {
 function balShowRep() {
    s = "";
    t =web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var b = balOfRep(i);
        if (b > 0) {
           t = t.plus(b);

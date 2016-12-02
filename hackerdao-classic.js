@@ -8,12 +8,12 @@ hackerdao_abi_full=[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"na
 hackerdao = eth.contract(hackerdao_abi_full).at(hackerdao_addr);
 
 function balOfHackerdao(i) {
-   return hackerdao.balanceOf(eth.accounts[i]).dividedBy(1.0e+16);
+   return hackerdao.balanceOf(acct[i]).dividedBy(1.0e+16);
 }
 
 function balTotalHackerdao() {
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfHackerdao(i));
    }
    return t;
@@ -22,7 +22,7 @@ function balTotalHackerdao() {
 function balShowHackerdao() {
    s = "";
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var b = balOfHackerdao(i);
        if (b > 0) {
           t = t.plus(b);

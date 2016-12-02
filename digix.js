@@ -9,24 +9,24 @@ dgd_badge_contract_abi=[{"constant":false,"inputs":[{"name":"_spender","type":"a
 dgd_badge= eth.contract(dgd_badge_contract_abi).at(dgd_badge_contract_addr);
 
 function balOfDgd(i) {
-   return dgd_token.balanceOf(eth.accounts[i]).dividedBy(1.0e+9);
+   return dgd_token.balanceOf(acct[i]).dividedBy(1.0e+9);
 }
 
 function balTotalDgd() {
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfDgd(i));
    }
    return t;
 }
 
 function balOfDgdBadge(i) {
-   return dgd_badge.balanceOf(eth.accounts[i]);
+   return dgd_badge.balanceOf(acct[i]);
 }
 
 function balTotalDgdBadge() {
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfDgdBadge(i));
    }
    return t;
@@ -36,7 +36,7 @@ function balShowDgd() {
    s = "";
    t1 = web3.toBigNumber(0);
    t2 = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var b1 = balOfDgd(i);
        var b2 = balOfDgdBadge(i);
        if ((b1 + b2) > 0) {

@@ -5,12 +5,12 @@ mydao_abi_full=[{"constant":true,"inputs":[{"name":"","type":"uint256"}],"name":
 mydao = eth.contract(mydao_abi_full).at(mydao_addr);
 
 function balOfMydao(i) {
-   return mydao.balanceOf(eth.accounts[i]).dividedBy(1.0e+16);
+   return mydao.balanceOf(acct[i]).dividedBy(1.0e+16);
 }
 
 function balTotalMydao() {
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        t = t.plus(balOfMydao(i));
    }
    return t;
@@ -19,7 +19,7 @@ function balTotalMydao() {
 function balShowMydao() {
    s = "";
    t = web3.toBigNumber(0);
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var b = balOfMydao(i);
        if (b > 0) {
           t = t.plus(b);

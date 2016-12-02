@@ -1,6 +1,6 @@
 var acct = [];
 for (i = 0; i < eth.accounts.length; i++) {
-    acct[i] = eth.accounts[i];
+    acct[acct.length] = eth.accounts[i];
 }
 
 var _cur = "ETC";
@@ -20,12 +20,12 @@ function balByAccts() {
    // total etc
    var t_e = web3.toBigNumber(0);
 
-   for (i = 0; i < eth.accounts.length; i++) {
+   for (i = 0; i < acct.length; i++) {
        var s = "acct[" + i + "]";
-       if (eth.accounts[i] != etc_addr) {
+       if (acct[i] != etc_addr) {
            s = s + "#ETH";
        }
-       s = s + "(" + eth.getTransactionCount(eth.accounts[i]) + ")";
+       s = s + "(" + eth.getTransactionCount(acct[i]) + ")";
 
        var a = "";   // assets
 
