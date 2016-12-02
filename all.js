@@ -7,8 +7,8 @@ for (i = 0; i < eth.accounts.length; i++) {
 }
 
 var _cur = "ETH";
-var etc_addr = "0xe766ac7915e126f429abd534135179144627d01a";
-var metamask_addr = "0x54e13ca8e3be520a6858acee04c6e1f562ddf443";
+var etc_addr = "0xe766ac7915e126f429abd534135179144627d01a".toLowerCase();
+var metamask_addr = "0x54e13ca8e3be520a6858acee04c6e1f562ddf443".toLowerCase();
 
 loadScript("wallet.js");
 loadScript("digix.js");
@@ -28,10 +28,10 @@ function balByAccts() {
 
    for (i = 0; i < acct.length; i++) {
        var s = "acct[" + i + "]";
-       if (acct[i] == etc_addr) {
+       if (acct[i].toLowerCase() == etc_addr) {
            s = s + "*ETC*";
        }
-       else if (acct[i] == metamask_addr) {
+       else if (acct[i].toLowerCase() == metamask_addr) {
            s = s + "*MetaMask*";
        }
        s = s + "(" + eth.getTransactionCount(acct[i]) + ")";
