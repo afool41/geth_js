@@ -1,9 +1,9 @@
 if (typeof(acct) == 'undefined') {
    var acct = [];
-}
 
-for (i = 0; i < eth.accounts.length; i++) {
-    acct[acct.length] = eth.accounts[i];
+   for (i = 0; i < eth.accounts.length; i++) {
+       acct[acct.length] = eth.accounts[i];
+   }
 }
 
 var _cur = "ETH";
@@ -74,7 +74,7 @@ function balByAccts() {
           a = a + r + " REP ; ";
        }
 
-       //if ((e + dt + db + m + r) > 0) {
+       //if ((e + dt + db + m + r) > 0)
        if (e.plus(dt).plus(db).plus(m).plus(r) > 0) {
           s = s + " == ";
        }
@@ -82,7 +82,25 @@ function balByAccts() {
        console.log(s + a);
    }
 
-   return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "REP == " + t_r + " ;; ";
+   var _return = "";
+   if (t_e > 0) {
+      _return = _return + _cur + " == " + t_e;
+   }
+   if (t_dt > 0) {
+      _return = _return + " ;; " + "DGD == " + t_dt;
+   }
+   if (t_db > 0) {
+      _return = _return + " ;; " + "DGD badge == " + t_db;
+   }
+   if (t_m > 0) {
+      _return = _return + " ;; " + "MKR == " + t_m;
+   }
+   if (t_r > 0) {
+      _return = _return + " ;; " + "REP == " + t_r;
+   }
+
+   //return _cur + " == " + t_e + " ;; " + "DGD == " + t_dt + " tokens  & " + t_db + " badges ;; " +  "MKR == " + t_m + " ;; " + "REP == " + t_r + " ;; ";
+   return _return;
 
 }
 
